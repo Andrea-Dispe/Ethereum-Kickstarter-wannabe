@@ -5,6 +5,9 @@ contract CampaignFactory {
 
     function createCampaign(uint minimum) public {
         address newCampaign = new Campaign(minimum, msg.sender);
+        // we need to push the deployed contract into the array to later get its address in
+        // the frontend app because the .send method does not return it so we wouldnt have a way to
+        // get the contract address of the newly created campaign
         deployedCampaigns.push(newCampaign);
     }
 

@@ -24,11 +24,18 @@ const keys = Object.keys(output)
 // for each contract save the abicode and bytecode into a relative file
 keys.forEach(key =>  {
   try {
-    fs.writeFileSync((key.replace(':', '')) + '.json',   JSON.stringify({
+    fs.writeFileSync(path.resolve(buildPath, (key.replace(':', '')) + '.json'),   JSON.stringify({
       bytecode: output[key].bytecode,
-      inteface: output[key].interface
+      interface: output[key].interface
     }))
   } catch (error) {
     console.log('error: ', error);
   }
 })
+
+
+// // write each compiled contract
+// for (let contract in output) {
+//   console.log('contract: ', contract);
+//   fs.outputJsonSync(path.resolve(buildPath, contract.replace(':', '') + '.json'),  output[contract])
+// }
